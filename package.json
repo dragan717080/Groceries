@@ -1,5 +1,5 @@
 {
-  "name": "insby1",
+  "name": "groceries-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -20,6 +20,7 @@
     "next-redux-wrapper": "^8.1.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.47.0",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.11.0",
     "react-redux": "^8.1.3",

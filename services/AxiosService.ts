@@ -42,7 +42,7 @@ class AxiosService {
   public async getLocal<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
     const response: AxiosResponse<T> = await this.localAxiosInstance.get(url, config);
     return response.data;
-  }P
+  }
 }
 
 export default new AxiosService();

@@ -18,11 +18,15 @@ import { setAuthToken, setError } from '@/store/slices/initializeAuthSlice';
 import { AxiosError } from 'axios';
 import toast from 'react-hot-toast';
 
-const Header: FC = ({toDisplay} :boolean) => {
+type ToDisplayProps = {
+  toDisplay: boolean;
+};
 
+const Header: FC<ToDisplayProps> = ({ toDisplay }) => {
   const session = useSession();
   const router = useRouter();
   const dispatch = useDispatch();
+  const display = toDisplay || session?.status === 'authenticated';
 
   const isHeaderBurgerMenuOpen = useSelector((state: RootState) => state.headerBurgerMenu.isHeaderBurgerMenuOpen);
 
@@ -39,25 +43,12 @@ const Header: FC = ({toDisplay} :boolean) => {
     }
 
     fetchData();
-  }, []);
+  }, [session?.status]);
 
-  return !toDisplay ?
-    <></>
+  return !display
+    ? <></>
     : (
       <header className='sticky top-0 z-40 row-v bg-gray-600 shadow-md py-3 px-4 md:px-10 xl:px-[15rem] 2xl:px-[22rem]'>
-        <div
-          onClick={() => router.push('/')}
-          className="relative flex items-center h-16 w-[90px] md:min-w-[7rem] md:w-[20rem] pointer -my-3"
-        >
-          <Image
-            height='102'
-            width='170'
-            src='/assets/images/logo-full-t-alt.png'
-            objectFit='contain'
-            objectPosition='left'
-            alt={`logo`}
-          />
-        </div>
         <Navbar />
         <div className='row-v min-w-[40%] md:min-w-[14rem] xl:min-w-[17rem] 2xl:min-w-[20rem] xs:py-1 pt-2.5 pb-2 xs:border-2 rounded-full md:shadow-sm xs:mx-6'>
           <input
@@ -70,7 +61,7 @@ const Header: FC = ({toDisplay} :boolean) => {
         <div className='flex items-center space-x-4 text-white md:ml-auto semibold'>
           {session.status === 'authenticated'
             ? <div className='inline-flex'>
-              <div className='t-red'>{session.data!.user!.email}</div>
+              <div className='t-red text-three-dots-wrapper max-w-[14rem]'>{session.data!.user!.email}</div>
               <button className='t-cornflowerblue ml-3' onClick={async () => { toast.success('Logged out!'); await signOut(); }} >Logout</button>
             </div>
             : <div className='md:pl-3 lg:pl-0 md:pr-16 2xl:pr-4 hover:text-red-400'><a href='auth'>Login</a></div>

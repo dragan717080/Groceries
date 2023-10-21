@@ -7,11 +7,11 @@ const handler = NextAuth({
     CredentialsProvider({
     name: "Credentials",
     credentials: {
-      username: { label: "Username", type: "text", placeholder: "jsmith" },
+      email: { label: "Email", type: "email", placeholder: "somemail@gmail.com" },
       password: { label: "Password", type: "password" }
     },
     async authorize(credentials, req) {
-      if (!credentials) {
+      if (!credentials || !credentials.email) {
         return null;
       }
       return { id: StringUtils.generateUUIDv4(), email: credentials.email, password: credentials?.password }

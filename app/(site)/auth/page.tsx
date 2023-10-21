@@ -39,63 +39,59 @@ const AuthForm: FC = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
 
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/session/customer-sign-in`
+
+    const loginBody = {
+      autoRegister: true,
+      login: data.email,
+      password: data.password,
+    }
+
     if (variant === 'REGISTER') {
-      const postBody = {
-        autoRegister: true,
-        login: data.email,
-        password: data.password,
+      const registerBody = {
+        ...loginBody,
         confirmPassword: data.confirmPassword
       };
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-      const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/session/customer-sign-in`
       axios
-        .post(url, postBody, { headers })
-        .then((response) => signIn('credentials', {
-          ...data,
-          redirect: false
-        })
-        )
-        .then((callback) => {
-          if (callback?.error) {
-            toast.error('Invalid credentials!');
-          } else {
-            toast.success('Logged In');
-            router.push('/');
-          }
-        })
+        .post(url, registerBody, { headers })
+        .then((response) => { toast.success('You signed up!'); setVariant('LOGIN'); })
         .catch((error) => {
           console.error('Error:', error);
-          toast.error('Something went wrong!');
+          toast.error('Invalid credentials.');
         })
         .finally(() => setIsLoading(false));
     }
 
     if (variant === 'LOGIN') {
-      signIn('credentials', {
-        ...data,
-        redirect: false
+      axios
+      .post(url, loginBody, { headers })
+      .then(async (response) => {
+        if (response.status === 200) {
+          await signIn('credentials', {
+            ...data,
+            redirect: false,
+          });
+          toast.success('You logged in!');
+          router.push('/');
+        } else {
+          console.error('Error:', response.data);
+          toast.error('Invalid credentials.');
+        }
       })
-        .then((callback) => {
-          if (callback?.error) {
-            toast.error('Invalid credentials!');
-          } else {
-            toast.success('Logged In');
-            router.push('/');
-          }
-        })
-        .finally(() => setIsLoading(false))
+      .catch((error) => {
+        console.error('Error:', error);
+        toast.error('Something went wrong.');
+      })
+      .finally(() => setIsLoading(false));
     }
-  }
-
-  useEffect(() => {
-    if (session?.status === 'authenticated') {
-      router.push('/')
     }
-  }, [session?.status, router]);
 
-  return (
+  return !token 
+  ? <div>You need to get auth token to access this page.</div>
+  : (
     <div className="flex">
       {/* Image */}
       <div className={`relative hidden w-1/2 md:flex row ${variant !== 'REGISTER' ? 'bg-red-600': ''}`}>

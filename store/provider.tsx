@@ -6,7 +6,7 @@ import { Header, Footer } from "@/app/(site)/components";
 import AuthContext from '../app/context/AuthContext';
 
 // This file is needed so that layout file doesn't directly have to use 'use client'
-const toDisplay = window.location.pathname !== '/auth';
+const toDisplay = typeof(window) !== 'undefined' ? window.location.pathname === '/' : true;
 export default function Providers({ children }: { children: ReactNode }) {
   return (
   <Provider store={store}>

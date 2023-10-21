@@ -1,5 +1,3 @@
-import { Prisma } from "@prisma/client";
-
 type AuthVariant = 'LOGIN' | 'REGISTER';
 
 type StringObject = {

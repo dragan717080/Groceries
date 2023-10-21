@@ -41,12 +41,12 @@ export interface ProductSchema {
   name: string;
   description: string;
   sku: string;
-  mpn?: string;
   brand?: string;
   image: string;
   offers: {
     '@type': 'Offer';
     price: number;
+    member_price: number;
     priceCurrency: string;
     availability: 'http://schema.org/InStock' | 'http://schema.org/OutOfStock';
     itemCondition?: 'http://schema.org/NewCondition' | 'http://schema.org/UsedCondition' | 'http://schema.org/RefurbishedCondition' | 'http://schema.org/DamagedCondition';

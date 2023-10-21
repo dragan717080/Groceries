@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Groceries App
 
-## Getting Started
+## Technologies Used
 
-First, run the development server:
+- **Next.js**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Next.js is a React framework for building modern web applications. It provides server-side rendering (SSR) and static site generation (SSG) capabilities, resulting in faster page loads and improved SEO. Next.js simplifies the development process and offers features like automatic code splitting, routing, and hot module replacement.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **TypeScript**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+TypeScript is a strongly typed superset of JavaScript that enhances code maintainability and scalability. It allows us to catch errors during development and provides better tooling support, leading to more robust applications.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Tailwind CSS**
 
-## Learn More
+Tailwind CSS is a utility-first CSS framework that enables rapid UI development. Its utility classes make it easy to create responsive and custom-designed user interfaces without writing custom CSS.
 
-To learn more about Next.js, take a look at the following resources:
+- **NextAuth.js**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+NextAuth.js is an authentication library for Next.js applications. It supports various authentication providers like OAuth, JWT, and credentials-based authentication, making it easy to implement secure user authentication and authorization.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. Run `npm install`
 
-## Deploy on Vercel
+4. Run `npm run dev`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Customize the app
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Customize the app to suit your needs!
+
+## App hosted on Vercel
+
+https://groceries-app-nine.vercel.app/

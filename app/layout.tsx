@@ -15,7 +15,7 @@ import store from '../store';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Insby',
+  title: 'Groceries App',
   description: 'App built with Next.js, TypeScript, Tailwind and NextAuth',
 }
 
