@@ -1,6 +1,6 @@
-# Groceries App
+# <a name="no-link"></a>Groceries App
 
-## Technologies Used
+## <a name="no-link"></a>Technologies Used
 
 - **Next.js**
 
@@ -22,10 +22,10 @@ NextAuth.js is an authentication library for Next.js applications. It supports v
 
 4. Run `npm run dev`
 
-## Customize the app
+## <a name="no-link"></a>Customize the app
 
 Customize the app to suit your needs!
 
-## App hosted on Vercel
+## <a name="no-link"></a>App hosted on Vercel
 
 https://groceries-app-nine.vercel.app/
