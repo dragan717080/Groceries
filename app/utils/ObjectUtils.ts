@@ -1,9 +1,8 @@
 import Product, { ProductSchema } from "../interfaces/Product";
 
+/* Typically some object related methods typical to JS go here, e.g. 
+deep equal comparison, range, split array to chunks etc. */
 abstract class ObjectUtils {
-  static splitArrayToChunks = (arr: unknown[], size: number): unknown =>
-    Array.from({ length: Math.ceil(arr.length / size) }, (_, i) => arr.slice(i*size, i*size + size));
-
   static createProductSchema(product: Product): ProductSchema {
     const productSchema: ProductSchema = {
       '@context': 'http://schema.org',
@@ -24,6 +23,13 @@ abstract class ObjectUtils {
     productSchema.offers.itemCondition = "http://schema.org/NewCondition";
   
     return productSchema;
+  }
+
+  static swapUrlsInProducts(products: Product[]): Product[] {
+    const imageIndexes = { 0:1, 1:5, 2:9, 3:4, 4:3, 5:0, 6:7, 7:6, 8:2, 9:8 };
+    const originalUrls = products.map((product) => product.image_url);
+    products.forEach((product, index: number) => { console.log(product.image_url); product.image_url = originalUrls[imageIndexes[index]] })
+    console.log(products.map((product) => [product.title, product.image_url]));
   }
 }
 

@@ -1,23 +1,25 @@
 import { FC, useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import store, { RootState } from '@/store';
 import { getProducts } from '@/app/config/initApp';
 import { useSession } from 'next-auth/react';
 import Product, { ProductSchema } from '@/app/interfaces/Product';
 import ObjectUtils from '@/app/utils/ObjectUtils';
 import Image from 'next/image';
+import { useAuthStore } from '@/store/zustandStore';
 
 const Products: FC = () => {
 
-  const authToken = useSelector((state: RootState) => state.initializeAuth.authToken);
   const session = useSession();
 
   const [products, setProducts] = useState<ProductSchema[]>([]);
+
+  const { authToken } = useAuthStore();
 
   useEffect(() => {
     if (authToken) {
       getProducts(authToken)
         .then((products) => {
+          console.log(products);
+          ObjectUtils.swapUrlsInProducts(products);
           setProducts(products.map((product: Product) => ObjectUtils.createProductSchema(product)));
         })
         .catch((error) => {

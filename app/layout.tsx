@@ -6,11 +6,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import ToasterContext from './context/ToasterContext';
 import AuthContext from './context/AuthContext';
-import { Provider } from 'react-redux';
-import Providers from '@/store/provider';
 import { Header, Footer } from './(site)/components';
-
-import store from '../store';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,11 +15,7 @@ export const metadata: Metadata = {
   description: 'App built with Next.js, TypeScript, Tailwind and NextAuth',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: ReactNode
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
 
   // For default font: <body className={inter.className}>
 
@@ -36,12 +28,12 @@ export default function RootLayout({
       </head>
 
       <body>
-        <Providers>
-          <div className="min-h-screen">
+      <div className="col-v min-h-screen">
+          <AuthContext>
             <ToasterContext />
             {children}
-          </div>
-        </Providers>
+          </AuthContext>
+        </div>
       </body>
     </html>
   )

@@ -1,18 +1,15 @@
-import React, { FC, useState, useRef } from 'react';
+import { FC, ComponentType, useState, useRef } from 'react';
 import ArrowIcon from '@/public/assets/svgs/ArrowIcon';
 import NavbarPortal from './NavbarPortal';
-import { useDispatch, useSelector } from 'react-redux';
-import { setIsNavbarPortalOpen } from '@/store/slices/navbarPortalSlice';
-import { RootState } from '@/store';
+import { useNavbarPortalStore } from '@/store/zustandStore';
 
 interface NavbarMenuItemProps {
-  ComponentToRender: React.ComponentType;
+  ComponentToRender: ComponentType;
   index: number;
 }
 
 const NavbarMenuItem: FC<NavbarMenuItemProps> = ({ ComponentToRender, index }) => {
-  const dispatch = useDispatch();
-  const isNavbarPortalOpen = useSelector((state: RootState) => state.navbarPortal.isNavbarPortalOpen);
+  const { isNavbarPortalOpen, setIsNavbarPortalOpen } = useNavbarPortalStore();
 
   // Local state to manage the portal for this specific toolbar
   const [isHovered, setIsHovered] = useState<boolean>(false);
@@ -35,11 +32,11 @@ const NavbarMenuItem: FC<NavbarMenuItemProps> = ({ ComponentToRender, index }) =
         className="parent-container p-4 md:px-1.5 xl:px-4 pointer"
         onMouseEnter={() => {
           setIsHovered(true);
-          dispatch(setIsNavbarPortalOpen(true));
+          setIsNavbarPortalOpen(true);
         }}
         onMouseLeave={() => {
           setIsHovered(false);
-          dispatch(setIsNavbarPortalOpen(false));
+          setIsNavbarPortalOpen(false);
         }}
       >
         <div className="group row-v space-x-0.5 hover:text-red-400">
