@@ -52,3 +52,11 @@ export interface ProductSchema {
     itemCondition?: 'http://schema.org/NewCondition' | 'http://schema.org/UsedCondition' | 'http://schema.org/RefurbishedCondition' | 'http://schema.org/DamagedCondition';
   };
 }
+
+export interface CartProduct {
+  currency: string;
+  description: string;
+  image: string;
+  name: string;
+  sku: string;
+}

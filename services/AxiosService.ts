@@ -38,7 +38,7 @@ class AxiosService {
     return response.data;
   }
 
-  // Data from the Local API
+  // Sa lokalnog APIja
   public async getLocal<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
     const response: AxiosResponse<T> = await this.localAxiosInstance.get(url, config);
     return response.data;

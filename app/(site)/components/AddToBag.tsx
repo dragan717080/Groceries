@@ -2,11 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { useShoppingCart } from "use-shopping-cart";
-import { Cart } from "@/app/interfaces";
+import CartProps from "@/app/interfaces/props/CartProps";
 import { useSession } from "next-auth/react";
 
 export default function AddToBag({ currency, description, image, name,
-  price, sku, isLargeScreen }: Cart) {
+  price, sku, isLargeScreen }: CartProps) {
 
   const { addItem, handleCartClick } = useShoppingCart();
   const session = useSession();

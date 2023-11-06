@@ -12,6 +12,7 @@ import AuthInputFields from '@/app/constants/authInputFields';
 import axios from 'axios';
 import AxiosService from '@/services/AxiosService';
 import { useAuthStore } from '@/store/zustandStore';
+import { AuthStore } from '@/app/interfaces/Zustand';
 
 const AuthForm: FC = () => {
   const [variant, setVariant] = useState<AuthVariant>('REGISTER');

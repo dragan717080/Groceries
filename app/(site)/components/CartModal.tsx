@@ -36,22 +36,20 @@ const CartModal = () => {
           <SheetTitle className="mt-auto mb-auto">Vaša korpa</SheetTitle>
           <Button className='bg-primary text-white ml-auto' onClick={(e) => clearAll(e)}>Ukloni sve</Button>
         </SheetHeader>
-
         <div className="h-full flex flex-col justify-between">
           <div className="mt-8 flex-1 overflow-y-auto">
             <ul className="-my-6 divide-y divide-gray-200">
               {cartCount === 0 ? (
-                <h1 className="py-6">Nemate nijedan produkt</h1>
+                <h1 className="py-6">Nemate nijedan proizvod u korpi</h1>
               ) : (
                 <>
                   {Object.values(cartDetails ?? {}).map((entry, index) => (
                     <li key={index} className="flex py-6">
-                      <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                      <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 relative">
                         <Image
+                          fill
                           src={entry.image as string}
                           alt="Product image"
-                          width={100}
-                          height={100}
                         />
                       </div>
                       <div className="ml-4 flex flex-1 flex-col">
