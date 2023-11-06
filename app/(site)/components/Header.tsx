@@ -69,7 +69,6 @@ const Header: FC = () => {
     }, [] as ProductSchema[]);
 
     setProductsMatchingInput(productsThatMatch);
-    console.log(productsThatMatch);
   }
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {

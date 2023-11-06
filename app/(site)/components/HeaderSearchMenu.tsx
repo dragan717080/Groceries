@@ -39,14 +39,14 @@ const HeaderSearchMenu: FC = () => {
       <div className="grid grid-cols-3 md:grid-cols-4 gap-x-4 gap-y-5 mx-auto w-[fit-content]">
         {productsMatchingInput.map((product) => (
           <div
-            className="mx-auto py-2 pl-2 flex flex-col md:row space-y-4 md:space-y-0 md:space-x-4 hover:bg-gray-200 hover:scale-105 active:scale-95 transition transform duration-200 ease-out pointer"
+            className="mx-auto py-2 pl-2 flex flex-col md:row space-y-4 md:space-y-0 md:space-x-0 hover:bg-gray-200 hover:scale-105 active:scale-95 transition transform duration-200 ease-out pointer"
             onClick={(e) => handleSelectProduct(e, product)}
             key={uuidv4()}
           >
-            <div className='relative h-16 w-24' >
+            <div className='relative h-16 w-24 mx-auto' >
               <Image fill alt={`${product.name} Image`} src={product.image ?? ''} className='rounded-xl' sizes='6rem' />
             </div>
-            <div className='w-28 md:w-[10rem] overflow-hidden text-ellipsis text-center md:whitespace-nowrap space-y-0'>
+            <div className='w-28 md:w-[10rem] overflow-hidden text-ellipsis text-center md:whitespace-nowrap ml-0 space-y-0'>
               {product.name}
             </div>
           </div>
