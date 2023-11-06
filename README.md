@@ -18,6 +18,11 @@ Tailwind CSS is a utility-first CSS framework that enables rapid UI development.
 
 NextAuth.js is an authentication library for Next.js applications. It supports various authentication providers like OAuth, JWT, and credentials-based authentication, making it easy to implement secure user authentication and authorization.
 
+- **Zustand**
+
+Zustand is a global state management library. It is less verbose and faster
+alternative to Redux for React and Next.js applications.
+
 3. Run `npm install`
 
 4. Run `npm run dev`
