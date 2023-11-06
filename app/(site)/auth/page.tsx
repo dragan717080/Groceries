@@ -56,12 +56,12 @@ const AuthForm: FC = () => {
       axios
         .post(url, registerBody, { headers })
         .then((response) => {
-          toast.success('You signed up!');
+          toast.success('Registrovali ste se!');
           setVariant('LOGIN');
         })
         .catch((error) => {
           console.error('Error:', error);
-          toast.error('Invalid credentials.');
+          toast.error('Pogrešni kredencijali.');
         })
         .finally(() => setIsLoading(false));
     }
@@ -75,16 +75,16 @@ const AuthForm: FC = () => {
               ...data,
               redirect: false,
             });
-            toast.success('You logged in!');
+            toast.success('Ulogovali ste se!');
             router.push('/');
           } else {
             console.error('Error:', response.data);
-            toast.error('Invalid credentials.');
+            toast.error('Pogrešni kredencijali.');
           }
         })
         .catch((error) => {
           console.error('Error:', error);
-          toast.error('Something went wrong.');
+          toast.error('Nešto je pošlo naopako.');
         })
         .finally(() => setIsLoading(false));
     }

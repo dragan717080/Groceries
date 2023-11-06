@@ -28,8 +28,7 @@ abstract class ObjectUtils {
   static swapUrlsInProducts(products: Product[]): Product[] {
     const imageIndexes = { 0:1, 1:5, 2:9, 3:4, 4:3, 5:0, 6:7, 7:6, 8:2, 9:8 };
     const originalUrls = products.map((product) => product.image_url);
-    products.forEach((product, index: number) => { console.log(product.image_url); product.image_url = originalUrls[imageIndexes[index]] })
-    console.log(products.map((product) => [product.title, product.image_url]));
+    products.forEach((product, index: number) => product.image_url = originalUrls[imageIndexes[index]] )
   }
 }
 

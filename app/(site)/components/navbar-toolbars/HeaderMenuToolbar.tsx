@@ -7,12 +7,12 @@ interface HeaderMenuToolbarProps {
 const HeaderMenuToolbar: FC<HeaderMenuToolbarProps> = ({ isOpen }) => {
   return (
     <div
-      className={`absolute rounded-lg bg-lightgray py-4 px-7 left-[-8.125rem] transition-transform 
+      className={`absolute rounded-lg bg-gray-200 py-4 px-7 left-[-8.125rem] transition-transform duration-500
       ${isOpen ? 'top-12' : 'translate-down-gradually'}`
     }
     >
       <ul className='gradient-title-alt'>
-        {['Products', 'Solutions', 'Resources'].map((item, index) => (
+        {['Locations', 'Careers', 'News'].map((item, index) => (
           <li key={index} className='gradient-title-alt'>
             {item}
           </li>

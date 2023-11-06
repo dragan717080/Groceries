@@ -1,10 +1,11 @@
 'use client';
 import Image from 'next/image';
-import { Header, Products, Footer } from './(site)/components';
+import { Header, Footer, Products, CartProvider, CartModal } from './(site)/components';
 
 export default function Home() {
   return (
-    <>
+    <CartProvider>
+      <CartModal />
       <Header />
       <section className="col-h justify-between min-w-[100%]">
         <div className='relative'>
@@ -12,12 +13,12 @@ export default function Home() {
           <div id="__next"></div>
         </div>
       </section>
-      <main className='bg-light flex-1'>
+      <main className='flex-1'>
         <div className="top-12 left-0">
           <Products />
         </div>
       </main>
       <Footer />
-    </>
+    </CartProvider>
   )
 }

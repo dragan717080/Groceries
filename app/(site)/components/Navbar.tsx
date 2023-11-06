@@ -1,18 +1,15 @@
 'use client';
-import { FC, useEffect } from 'react';
-import Image from 'next/image';
-import { useSession } from 'next-auth/react';
-import { MagnifyingGlassIcon, GlobeAltIcon, UserCircleIcon, UsersIcon } from '@heroicons/react/24/outline';
-import { signOut } from 'next-auth/react';
+
+import { FC } from 'react';
 import NavbarMenuItem from './NavbarMenuItem';
-import { ProductsToolbar, SolutionsToolbar, ResourcesToolbar } from './navbar-toolbars';
+import { LocationsToolbar, CareersToolbar, NewsToolbar } from './navbar-toolbars';
 
 const Navbar: FC = () => {
 
-  const toolbarComponents = [ProductsToolbar, SolutionsToolbar, ResourcesToolbar];
+  const toolbarComponents = [LocationsToolbar, CareersToolbar, NewsToolbar];
 
   return (
-    <nav className="hidden md:flex text-white h-30 px-14 md:pl-1 md:pr-2 lg:px-14">
+    <nav className="hidden md:flex h-30 px-14 md:pl-1 md:pr-2 lg:px-4">
       {toolbarComponents.map((toolbarComponent, index: number) => (
         <NavbarMenuItem ComponentToRender={toolbarComponent} index={index} key={index} />
       ))}

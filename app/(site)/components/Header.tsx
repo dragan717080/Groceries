@@ -16,6 +16,8 @@ import { AxiosError } from 'axios';
 import toast from 'react-hot-toast';
 import { useHeaderBurgerMenuStore, useAuthStore } from '@/store/zustandStore';
 import { v4 as uuidv4 } from 'uuid';
+import { ShoppingCart } from 'lucide-react';
+import { useShoppingCart }from 'use-shopping-cart';
 
 const Header: FC = () => {
   const session = useSession();
@@ -26,6 +28,8 @@ const Header: FC = () => {
   const { authToken, error, setAuthToken, setError } = useAuthStore();
 
   const { isHeaderBurgerMenuOpen, toggleIsHeaderBurgerMenuOpen } = useHeaderBurgerMenuStore();
+
+  const { handleCartClick } = useShoppingCart();
 
   useEffect(() => {
     async function fetchData() {
@@ -40,29 +44,59 @@ const Header: FC = () => {
     fetchData();
   }, [session?.status]);
 
+  const onLinkClick = (e: MouseEvent) => {
+    e.preventDefault();
+    router.push((e.target as HTMLAnchorElement).href.replace('product/', ''))
+  }
+
   return (
-    <header className='sticky top-0 z-40 row-v bg-gray-600 shadow-md py-3 px-4 md:px-10 xl:px-[15rem] 2xl:px-[22rem]'>
+    <header className='sticky top-0 z-40 row bg-white shadow-lg py-3 text-gray-600'>
+      <div
+        onClick={() => router.push('/')}
+        className="row"
+      >
+        <div className='relative row-v h-10 w-10 pointer hidden md:block'>
+          <Image
+            fill
+            src='/assets/images/logo.webp'
+            objectFit='contain'
+            objectPosition='left'
+            alt={`logo`}
+          />
+        </div>
+        <Link href="/">
+          <h1 className="text-xl md:text-2xl bold -mt-1.5 ml-2.5 pt-0.5 hidden md:block">
+            Dragan<span className="t-primary hidden md:contents">Websites</span>
+          </h1>
+        </Link>
+      </div>
       <Navbar />
       <div className='row-v min-w-[40%] md:min-w-[14rem] xl:min-w-[17rem] 2xl:min-w-[20rem] xs:py-1 pt-2.5 pb-2 xs:border-2 rounded-full md:shadow-sm xs:mx-6'>
         <input
           type="text"
           placeholder='Start your search'
-          className='ml-1 pl-4 border-none outline-none bg-transparent flex-grow text-sm text-white placeholder-gray-300'
+          className='ml-1 pl-4 border-none outline-none bg-transparent flex-grow text-sm placeholder-gray-300'
         />
-        <MagnifyingGlassIcon className='h-8 mr-2 p-2 bg-red-400 text-white rounded-full pointer hidden xs:inline-flex xs:mx-2' />
+        <MagnifyingGlassIcon className='h-8 mr-2 p-2 bg-primary text-white rounded-full pointer hidden xs:inline-flex xs:mx-2' />
       </div>
-      <div className='flex items-center space-x-4 text-white md:ml-auto semibold'>
+      <ShoppingCart class='pointer' onClick={() => handleCartClick()} />
+      <div className='row-v space-x-4 text-gray-600 semibold ml-10 sm:ml-0'>
         {session.status === 'authenticated'
           ? <div className='inline-flex'>
-            <div className='t-red text-three-dots-wrapper max-w-[14rem]'>{session.data!.user!.email}</div>
-            <button className='t-cornflowerblue ml-3' onClick={async () => { toast.success('Logged out!'); await signOut(); }} >Logout</button>
+            <UserCircleIcon className='w-4 ml-5 mr-2 hidden md:block' />
+            <div className='t-red md:pr-1 max-w-[9rem] text-ellipsis overflow-hidden hidden md:block'>{session.data!.user!.email}</div>
+            <button className='t-cornflowerblue ml-3' onClick={async () => await signOut()} >Logout</button>
           </div>
-          : <div className='md:pl-3 lg:pl-0 md:pr-16 2xl:pr-4 hover:text-red-400'><a href='auth'>Login</a></div>
+          : <div className='md:pl-3 lg:pl-6 2xl:pr-4 hover:text-primary pr-2 md:pr-16'>
+            <Link href='auth' onClick={onLinkClick}>
+              Login
+            </Link>
+          </div>
         }
       </div>
       <div
         id="burger-menu-btn"
-        className="block md:hidden text-white text-xl ml-auto xs:mr-6 relative"
+        className="block md:hidden text-gray-600 text-xl ml-auto mr-4 xs:mr-6 relative"
         onClick={toggleIsHeaderBurgerMenuOpen}
       >
         <span>{!isHeaderBurgerMenuOpen ? '☰' : 'X'}</span>

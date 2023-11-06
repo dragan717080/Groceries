@@ -39,9 +39,9 @@ const NavbarMenuItem: FC<NavbarMenuItemProps> = ({ ComponentToRender, index }) =
           setIsNavbarPortalOpen(false);
         }}
       >
-        <div className="group row-v space-x-0.5 hover:text-red-400">
+        <div className="group row-v space-x-0.5 hover:text-primary">
           <h2 className='font-semibold'>{ComponentToRender.displayName.split("Toolbar")[0]}</h2>
-          <div className="w-4 h-4 transform transition-transform duration-300 group-hover:rotate-180 group-hover:text-red-400">
+          <div className="w-4 h-4 transform transition-transform duration-300 group-hover:rotate-180 group-hover:text-primary">
             <ArrowIcon />
           </div>
         </div>
