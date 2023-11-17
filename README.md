@@ -23,6 +23,16 @@ NextAuth.js is an authentication library for Next.js applications. It supports v
 Zustand is a global state management library. It is less verbose and faster
 alternative to Redux for React and Next.js applications.
 
+## <a name="no-link"></a>Features
+
+- **Shopping Cart**
+
+Shopping Cart State and Logic with Stripe in Next/React
+
+- **ShadCn**
+
+Accessible, open source and customizable collection of beautifully designed components that you can use in your apps.
+
 ## <a name="no-link"></a>How to install
 
 Run `npm install`
