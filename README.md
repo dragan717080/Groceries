@@ -27,11 +27,11 @@ alternative to Redux for React and Next.js applications.
 
 - **Shopping Cart**
 
-Shopping Cart State and Logic with Stripe in Next/React
+Shopping cart state and logic with Stripe in Next.js/React.
 
 - **ShadCn**
 
-Accessible, open source and customizable collection of beautifully designed components that you can use in your apps.
+Accessible, open source and customizable collection of beautifully designed components that you can use in your apps, built using Radix UI and Tailwind CSS.
 
 ## <a name="no-link"></a>How to install
 
