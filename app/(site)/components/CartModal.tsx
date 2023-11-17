@@ -1,16 +1,23 @@
 "use client";
 
-import { FC, MouseEvent } from "react";
+import { FC, MouseEvent, SelectEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import {
+  Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
+} from "@/components/ui/select";
 
 import Image from "next/image";
 import { useShoppingCart } from "use-shopping-cart";
 import { toast } from 'react-hot-toast';
 
 const CartModal = () => {
-  const { cartCount, shouldDisplayCart, handleCartClick, 
-    cartDetails, removeItem, totalPrice, redirectToCheckout, clearCart } = useShoppingCart();
+  const { cartCount, shouldDisplayCart, handleCartClick, cartDetails, 
+    removeItem, totalPrice, redirectToCheckout, clearCart, setItemQuantity } = useShoppingCart();
+
+  const [quantity, setQuantity] = useState<number>(1);
+
+  console.log(cartDetails);
 
   async function handleCheckoutClick(event: any) {
     event.preventDefault();
@@ -29,6 +36,12 @@ const CartModal = () => {
 
   const clearAll = (e: MouseEvent) => clearCart();
 
+  const handleSetQuantity = (quantity: number, entry: any) => {
+    console.log(entry);
+
+    setItemQuantity(entry.sku, quantity);
+  }
+
   return (
     <Sheet open={shouldDisplayCart} onOpenChange={() => handleCartClick()}>
       <SheetContent className="sm:max-w-lg w-[90vw]">
@@ -45,7 +58,7 @@ const CartModal = () => {
                 <>
                   {Object.values(cartDetails ?? {}).map((entry, index) => (
                     <li key={index} className="flex py-6">
-                      <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 relative">
+                      <div className="h-32 w-32 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 relative">
                         <Image
                           fill
                           src={entry.image as string}
@@ -54,7 +67,7 @@ const CartModal = () => {
                       </div>
                       <div className="ml-4 flex flex-1 flex-col">
                         <div>
-                          <div className="flex justify-between text-base font-medium text-gray-900">
+                          <div className="flex justify-between text-base font-medium text-gray-900 items-center">
                             <h3>{entry.name}</h3>
                             <p className="ml-4">RSD {entry.price}</p>
                           </div>
@@ -62,17 +75,34 @@ const CartModal = () => {
                             {entry.description}
                           </p>
                         </div>
-                        <div className="flex flex-1 items-end justify-between text-sm">
-                          <p className="text-gray-500">QTY: {entry.quantity}</p>
-                          <div className="flex">
-                            <button
-                              type="button"
-                              onClick={() => removeItem(entry.id)}
-                              className="font-medium text-primary hover:text-primary/80"
-                            >
-                              Ukloni
-                            </button>
-                          </div>
+                        <div className="flex flex-1 items-center text-sm mt-4">
+                          <p className="text-gray-500">QTY: </p>
+                          <Select
+                            defaultValue={entry.quantity}
+                            className="w-20"
+                            onValueChange={(e) => handleSetQuantity(e, entry)}
+                          >
+                            <SelectTrigger className="w-20 ml-4">
+                              <SelectValue className="w-20" />
+                            </SelectTrigger>
+                            <SelectContent className="w-20">
+                              {Array.from({ length: 100 }).map((_, index) => (
+                                <SelectItem
+                                  value={index + 1}
+                                  key={index}
+                                >
+                                  {index + 1}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <button
+                            type="button"
+                            onClick={() => removeItem(entry.id)}
+                            className="font-medium text-primary hover:text-primary/80 ml-auto pr-1"
+                          >
+                            Ukloni
+                          </button>
                         </div>
                       </div>
                     </li>
