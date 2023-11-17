@@ -9,7 +9,7 @@ const Footer: FC = () => {
       <div className='md:hidden px-3'>
         <div className='col-h space-y-4'>
           <div className="row space-x-4 text-gray-600 semibold">
-            {['Privacy', 'Sitemap', 'Shipping', 'Abous Us']
+            {['Privatnost', 'Kako kupovati', 'Dostava', 'O nama']
               .map((item: string, index: number) => (
                 <div className='hover:text-primary pointer' key={index}>{item}</div>
               ))}
@@ -32,7 +32,7 @@ const Footer: FC = () => {
         <div className='px-7'>
           <div className='col-h space-y-4'>
             <div className="row space-x-4 text-gray-600 semibold">
-              {['Privacy', 'Sitemap', 'Shipping', 'Terms of Use']
+              {['Privatnost', 'Kako kupovati', 'Dostava', 'O nama']
                 .map((item: string, index: number) => (
                   <div className='hover:text-primary pointer' key={index}>{item}</div>
                 ))}

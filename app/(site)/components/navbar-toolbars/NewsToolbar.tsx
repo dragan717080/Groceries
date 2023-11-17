@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-const ResourcesToolbar: FC = () => {
+const NajnovijeToolbar: FC = () => {
   return (
     <div>
       Dostava preko aplikacije Glovo iz IDEA, IDEA organic i Mercator prodavnica!
@@ -8,6 +8,6 @@ const ResourcesToolbar: FC = () => {
   )
 }
 
-ResourcesToolbar.displayName = 'ResourcesToolbar';
+NajnovijeToolbar.displayName = 'NajnovijeToolbar';
 
-export default ResourcesToolbar;
+export default NajnovijeToolbar;

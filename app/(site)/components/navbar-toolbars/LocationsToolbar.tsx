@@ -1,11 +1,11 @@
 import { FC } from 'react';
 
-const LocationsToolbar: FC = () => {
+const LokacijeToolbar: FC = () => {
   return (
     <div>Na 103 prodajna mesta širom Srbije!</div>
   )
 }
 
-LocationsToolbar.displayName = 'LocationsToolbar';
+LokacijeToolbar.displayName = 'LokacijeToolbar';
 
-export default LocationsToolbar;
+export default LokacijeToolbar;

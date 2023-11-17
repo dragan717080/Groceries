@@ -1,15 +1,17 @@
 "use client";
 
-import { FC, MouseEvent, SelectEvent, useState } from "react";
+import { FC, MouseEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
 
+import { CartProduct } from "@/app/interfaces/Product";
 import Image from "next/image";
 import { useShoppingCart } from "use-shopping-cart";
 import { toast } from 'react-hot-toast';
+import { Product } from "use-shopping-cart/core";
 
 const CartModal = () => {
   const { cartCount, shouldDisplayCart, handleCartClick, cartDetails, 
@@ -36,7 +38,7 @@ const CartModal = () => {
 
   const clearAll = (e: MouseEvent) => clearCart();
 
-  const handleSetQuantity = (quantity: number, entry: any) => {
+  const handleSetQuantity = (quantity: number, entry: Product) => {
     console.log(entry);
 
     setItemQuantity(entry.sku, quantity);
@@ -78,9 +80,8 @@ const CartModal = () => {
                         <div className="flex flex-1 items-center text-sm mt-4">
                           <p className="text-gray-500">QTY: </p>
                           <Select
-                            defaultValue={entry.quantity}
-                            className="w-20"
-                            onValueChange={(e) => handleSetQuantity(e, entry)}
+                            defaultValue={entry.quantity as unknown as string}
+                            onValueChange={(e) => handleSetQuantity(e as unknown as number, entry)}
                           >
                             <SelectTrigger className="w-20 ml-4">
                               <SelectValue className="w-20" />
@@ -88,7 +89,7 @@ const CartModal = () => {
                             <SelectContent className="w-20">
                               {Array.from({ length: 100 }).map((_, index) => (
                                 <SelectItem
-                                  value={index + 1}
+                                  value={(index + 1) as unknown as string}
                                   key={index}
                                 >
                                   {index + 1}

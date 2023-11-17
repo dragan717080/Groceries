@@ -1,11 +1,11 @@
 import { FC } from 'react';
 
-const CareersToolbar: FC = () => {
+const ZaposlenjeToolbar: FC = () => {
   return (
     <div>Siguran posao u stabilnoj kompaniji!</div>
   )
 }
 
-CareersToolbar.displayName = 'CareersToolbar';
+ZaposlenjeToolbar.displayName = 'ZaposlenjeToolbar';
 
-export default CareersToolbar;
+export default ZaposlenjeToolbar;

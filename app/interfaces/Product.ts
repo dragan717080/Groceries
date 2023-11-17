@@ -58,5 +58,5 @@ export interface CartProduct {
   description: string;
   image: string;
   name: string;
-  sku: string;
+  sku?: string;
 }
